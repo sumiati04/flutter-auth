@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:lottie/lottie.dart';
 
 import '../../../data/entertainment_response.dart';
@@ -14,6 +15,7 @@ class DashboardView extends GetView<DashboardController> {
   Widget build(BuildContext context) {
     DashboardController controller = Get.put(DashboardController());
     final ScrollController scrollController = ScrollController();
+    final auth = GetStorage();
     // Mendefinisikan sebuah widget bernama build dengan tipe StatelessWidget yang memerlukan BuildContext.
     return SafeArea(
       // Widget SafeArea menempatkan semua konten widget ke dalam area yang aman (safe area) dari layar.
@@ -35,9 +37,9 @@ class DashboardView extends GetView<DashboardController> {
                     textAlign: TextAlign.end,
                     // Properti textAlign digunakan untuk menentukan perataan teks.
                   ),
-                  subtitle: const Text(
-                    "Udinnn",
-                    textAlign: TextAlign.end,
+                  subtitle: Text(
+                  auth.read('full_name').toString(),
+                  textAlign: TextAlign.end,
                     // Properti textAlign digunakan untuk menentukan perataan teks.
                   ),
                   trailing: Container(
@@ -72,8 +74,8 @@ class DashboardView extends GetView<DashboardController> {
                       // Properti tabs digunakan untuk menentukan teks yang akan ditampilkan pada masing-masing tab.
                       Tab(text: "Headline"),
                       Tab(text: "Teknologi"),
-                      Tab(text: "Olahraga"),
                       Tab(text: "Hiburan"),
+                      Tab(text: "Olahraga"),
                     ],
                   ),
                 ),

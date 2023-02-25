@@ -7,10 +7,10 @@ import '../../../utils/api.dart';
 
 class LoginController extends GetxController {
   //TODO: Implement LoginController
-final _getConnect = GetConnect();
-TextEditingController emailController = TextEditingController();
-TextEditingController passwordController = TextEditingController();
-final authToken = GetStorage();
+  final _getConnect = GetConnect();
+  TextEditingController emailController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
+  final authToken = GetStorage();
 
   @override
   void onInit() {
@@ -26,10 +26,10 @@ final authToken = GetStorage();
   void onClose() {
     emailController.dispose();
     passwordController.dispose();
-
   }
-  
-  void loginNow() async { //fungsi _loginNow() dengan deklarasi kata kunci async
+
+  void loginNow() async {
+    //fungsi _loginNow() dengan deklarasi kata kunci async
     var client = http.Client();
     var response;
 
@@ -45,6 +45,7 @@ final authToken = GetStorage();
         jsonDecode(utf8.decode(response.bodyBytes)) as Map<String, dynamic>;
     if (decodedResponse['success'] == true) {
       authToken.write('token', decodedResponse['access_token']);
+      authToken.write('full_name', response.body['full_name']);
       Get.offAllNamed('/home');
     } else {
       Get.snackbar('Error', decodedResponse['message'],
