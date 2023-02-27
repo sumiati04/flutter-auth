@@ -8,6 +8,7 @@ import '../../../data/entertainment_response.dart';
 import '../../../data/headline_response.dart';
 import '../../../data/sports_response.dart';
 import '../../../data/technology_response.dart';
+import '../../home/views/home_view.dart';
 import '../controllers/dashboard_controller.dart';
 
 class DashboardView extends GetView<DashboardController> {
@@ -23,6 +24,14 @@ class DashboardView extends GetView<DashboardController> {
         length: 4,
         // Widget DefaultTabController digunakan untuk mengatur tab di aplikasi.
         child: Scaffold(
+          floatingActionButton: FloatingActionButton(
+          onPressed: () async {
+          await auth.erase();
+          Get.offAll(() => const HomeView());
+        },
+  backgroundColor: Colors.redAccent,
+  child: const Icon(Icons.logout_rounded),
+),
           // Widget Scaffold digunakan sebagai struktur dasar aplikasi.
           appBar: PreferredSize(
             preferredSize: const Size.fromHeight(120.0),
