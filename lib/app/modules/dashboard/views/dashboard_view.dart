@@ -100,7 +100,7 @@ class DashboardView extends GetView<DashboardController> {
               technology(controller, scrollController),
               entertainment(controller, scrollController),
               sports(controller, scrollController),
-              profile(),
+              profile(context, controller, scrollController),
             ],
           ),
         ),
@@ -460,17 +460,87 @@ class DashboardView extends GetView<DashboardController> {
     );
   }
 
-  ListView profile() {
-    return ListView(
-      children:[
-        Padding(
-          padding: const EdgeInsets.only(top: 70.0),
-          child: Lottie.network(
-            'https://gist.githubusercontent.com/olipiskandar/4f08ac098c81c32ebc02c55f5b11127b/raw/6e21dc500323da795e8b61b5558748b5c7885157/loading.json',
-            fit: BoxFit.cover,
-          ),
-          ),
-      ],
+   Widget profile(BuildContext context, DashboardController controller,
+      ScrollController scrollController) {
+    double width = MediaQuery.of(context).size.height;
+    double height = MediaQuery.of(context).size.height;
+
+    return SingleChildScrollView(
+      child: Container(
+        width: width,
+        height: height,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            Center(
+              child: Container(
+                width: 200,
+                height: 200,
+                child: Lottie.asset('assets/img/no_image.jpg'),
+              ),
+            ),
+            SizedBox(
+              height: 25,
+            ),
+            Center(
+                child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                Container(
+                  width: 50,
+                  height: 50,
+                  decoration:
+                      BoxDecoration(shape: BoxShape.circle, color: Colors.blue),
+                  child:
+                      IconButton(onPressed: () {}, icon: Icon(Icons.add_home)),
+                ),
+                Container(
+                  width: 50,
+                  height: 50,
+                  decoration:
+                      BoxDecoration(shape: BoxShape.circle, color: Colors.blue),
+                  child:
+                      IconButton(onPressed: () {}, icon: Icon(Icons.add_home)),
+                ),
+                Container(
+                  width: 50,
+                  height: 50,
+                  decoration:
+                      BoxDecoration(shape: BoxShape.circle, color: Colors.blue),
+                  child:
+                      IconButton(onPressed: () {}, icon: Icon(Icons.add_home)),
+                )
+              ],
+            )),
+            SizedBox(
+              height: 40,
+            ),
+            Container(
+              padding: EdgeInsets.all(25),
+              height: 400,
+              width: 300,
+              decoration: BoxDecoration(
+                  color: Colors.white54,
+                  borderRadius: BorderRadius.circular(30),
+                  boxShadow: [
+                    BoxShadow(
+                        color: Color.fromARGB(115, 136, 134, 134),
+                        offset: Offset(6.1, 7.1),
+                        blurRadius: 5,
+                        spreadRadius: 3)
+                  ]),
+              child: Text(
+                "Aku Adalah Anak Pa Jamet Suka Keluar Sambil Mumet, Karena Aku sukannya Style jamet Aku Adalah Anak Pa Jamet Suka Keluar Sambil Mumet, Karena Aku sukannya Style jamet Aku Adalah Anak Pa Jamet Suka Keluar Sambil Mumet, Karena Aku sukannya Style jamet",
+                maxLines: 20,
+                style: TextStyle(
+                  overflow: TextOverflow.ellipsis,
+                  fontSize: 20,
+                ),
+              ),
+            )
+          ],
+        ),
+      ),
     );
   }
 }

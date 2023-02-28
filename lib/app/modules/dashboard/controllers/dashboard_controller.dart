@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 
 import '../../../data/entertainment_response.dart';
 import '../../../data/headline_response.dart';
+import '../../../data/profile_response.dart';
 import '../../../data/sports_response.dart';
 import '../../../data/technology_response.dart';
 import '../../../utils/api.dart';
@@ -36,6 +37,11 @@ class DashboardController extends GetxController {
     final technology = await _getConnect.get(BaseUrl.technology);
     //mengembalikan data response dalam bentuk HeadlineResponse setelah di-decode dari JSON
     return TechnologyResponse.fromJson(jsonDecode(technology.body));
+  }
+  Future<ProfileResponse> getProfile() async {
+    final response = await _getConnect.get(BaseUrl.profile2);
+    return ProfileResponse.fromJson(
+        jsonDecode(response.body) as Map<String, dynamic>);
   }
 
   final count = 0.obs;
