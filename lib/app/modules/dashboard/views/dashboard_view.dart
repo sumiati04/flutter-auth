@@ -21,17 +21,17 @@ class DashboardView extends GetView<DashboardController> {
     return SafeArea(
       // Widget SafeArea menempatkan semua konten widget ke dalam area yang aman (safe area) dari layar.
       child: DefaultTabController(
-        length: 4,
+        length: 5,
         // Widget DefaultTabController digunakan untuk mengatur tab di aplikasi.
         child: Scaffold(
           floatingActionButton: FloatingActionButton(
-          onPressed: () async {
-          await auth.erase();
-          Get.offAll(() => const HomeView());
-        },
-  backgroundColor: Colors.redAccent,
-  child: const Icon(Icons.logout_rounded),
-),
+            onPressed: () async {
+              await auth.erase();
+              Get.offAll(() => const HomeView());
+            },
+            backgroundColor: Colors.redAccent,
+            child: const Icon(Icons.logout_rounded),
+          ),
           // Widget Scaffold digunakan sebagai struktur dasar aplikasi.
           appBar: PreferredSize(
             preferredSize: const Size.fromHeight(120.0),
@@ -47,8 +47,8 @@ class DashboardView extends GetView<DashboardController> {
                     // Properti textAlign digunakan untuk menentukan perataan teks.
                   ),
                   subtitle: Text(
-                  auth.read('full_name').toString(),
-                  textAlign: TextAlign.end,
+                    auth.read('full_name').toString(),
+                    textAlign: TextAlign.end,
                     // Properti textAlign digunakan untuk menentukan perataan teks.
                   ),
                   trailing: Container(
@@ -85,6 +85,7 @@ class DashboardView extends GetView<DashboardController> {
                       Tab(text: "Teknologi"),
                       Tab(text: "Hiburan"),
                       Tab(text: "Olahraga"),
+                      Tab(text: "profile"),
                     ],
                   ),
                 ),
@@ -99,6 +100,7 @@ class DashboardView extends GetView<DashboardController> {
               technology(controller, scrollController),
               entertainment(controller, scrollController),
               sports(controller, scrollController),
+              profile(),
             ],
           ),
         ),
@@ -455,6 +457,20 @@ class DashboardView extends GetView<DashboardController> {
           },
         );
       },
+    );
+  }
+
+  ListView profile() {
+    return ListView(
+      children:[
+        Padding(
+          padding: const EdgeInsets.only(top: 70.0),
+          child: Lottie.network(
+            'https://gist.githubusercontent.com/olipiskandar/4f08ac098c81c32ebc02c55f5b11127b/raw/6e21dc500323da795e8b61b5558748b5c7885157/loading.json',
+            fit: BoxFit.cover,
+          ),
+          ),
+      ],
     );
   }
 }
