@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:lottie/lottie.dart';
 
 import '../../../data/entertainment_response.dart';
@@ -100,7 +102,7 @@ class DashboardView extends GetView<DashboardController> {
               technology(controller, scrollController),
               entertainment(controller, scrollController),
               sports(controller, scrollController),
-              profile(context, controller, scrollController),
+              profile(),
             ],
           ),
         ),
@@ -460,86 +462,69 @@ class DashboardView extends GetView<DashboardController> {
     );
   }
 
-   Widget profile(BuildContext context, DashboardController controller,
-      ScrollController scrollController) {
-    double width = MediaQuery.of(context).size.height;
-    double height = MediaQuery.of(context).size.height;
-
-    return SingleChildScrollView(
-      child: Container(
-        width: width,
-        height: height,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            Center(
-              child: Container(
-                width: 200,
-                height: 200,
-                child: Lottie.asset('assets/img/no_image.jpg'),
+  SafeArea profile() {
+    return SafeArea(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          const SizedBox(height: 20),
+          Container(
+            width: 150,
+            height: 150,
+            child: Lottie.network(
+                "https://assets5.lottiefiles.com/packages/lf20_jpxsQh.json"),
+          ),
+          const SizedBox(height: 20),
+          Text(
+            'Sumiati',
+            style: GoogleFonts.acme(fontSize: 24),
+          ),
+          const SizedBox(height: 10),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              IconButton(
+                icon: const FaIcon(
+                  FontAwesomeIcons.instagram,
+                  size: 30,
+                ),
+                onPressed: () {
+                  // add twitter url here
+                },
               ),
-            ),
-            SizedBox(
-              height: 25,
-            ),
-            Center(
-                child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                Container(
-                  width: 50,
-                  height: 50,
-                  decoration:
-                      BoxDecoration(shape: BoxShape.circle, color: Colors.blue),
-                  child:
-                      IconButton(onPressed: () {}, icon: Icon(Icons.add_home)),
+              const SizedBox(width: 20),
+              IconButton(
+                icon: const FaIcon(
+                  FontAwesomeIcons.telegram,
+                  size: 30,
                 ),
-                Container(
-                  width: 50,
-                  height: 50,
-                  decoration:
-                      BoxDecoration(shape: BoxShape.circle, color: Colors.blue),
-                  child:
-                      IconButton(onPressed: () {}, icon: Icon(Icons.add_home)),
-                ),
-                Container(
-                  width: 50,
-                  height: 50,
-                  decoration:
-                      BoxDecoration(shape: BoxShape.circle, color: Colors.blue),
-                  child:
-                      IconButton(onPressed: () {}, icon: Icon(Icons.add_home)),
-                )
-              ],
-            )),
-            SizedBox(
-              height: 40,
-            ),
-            Container(
-              padding: EdgeInsets.all(25),
-              height: 400,
-              width: 300,
-              decoration: BoxDecoration(
-                  color: Colors.white54,
-                  borderRadius: BorderRadius.circular(30),
-                  boxShadow: [
-                    BoxShadow(
-                        color: Color.fromARGB(115, 136, 134, 134),
-                        offset: Offset(6.1, 7.1),
-                        blurRadius: 5,
-                        spreadRadius: 3)
-                  ]),
-              child: Text(
-                "Aku Adalah Anak Pa Jamet Suka Keluar Sambil Mumet, Karena Aku sukannya Style jamet Aku Adalah Anak Pa Jamet Suka Keluar Sambil Mumet, Karena Aku sukannya Style jamet Aku Adalah Anak Pa Jamet Suka Keluar Sambil Mumet, Karena Aku sukannya Style jamet",
-                maxLines: 20,
-                style: TextStyle(
-                  overflow: TextOverflow.ellipsis,
-                  fontSize: 20,
-                ),
+                onPressed: () {
+                  // add linkedin url here
+                },
               ),
-            )
-          ],
-        ),
+              const SizedBox(width: 20),
+              IconButton(
+                icon: const FaIcon(
+                  FontAwesomeIcons.github,
+                  size: 30,
+                ),
+                onPressed: () {
+                  // add github url here
+                },
+              ),
+            ],
+          ),
+          const SizedBox(height: 20),
+          // ignore: prefer_const_constructors
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20),
+            child: Text(
+              'Hello... My name is Sumiati, I am a student at SMK Assalaam Bandung. I have a hobby of reading and watching film.',
+              textAlign: TextAlign.center,
+              style: GoogleFonts.acme(fontSize: 16),
+            ),
+          ),
+        ],
       ),
     );
   }
